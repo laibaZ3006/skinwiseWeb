@@ -1,0 +1,188 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Dashboard | SkinWise</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-skinwise">
+        <div class="container">
+            <a class="navbar-brand brand-mark" href="index.html"><span class="brand-icon">✿</span> skinwise</a>
+            <div class="d-flex align-items-center gap-3">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="btn btn-outline-dark rounded-pill px-3" href="login.html">Log out</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+
+        <div class="dashboard-welcome mb-4">
+            <div>
+                <span class="eyebrow">YOUR PERSONAL SPACE</span>
+                <h1 class="fw-bold mt-2">Hello, Sarah <span class="wave">✿</span></h1>
+                <p class="text-secondary mb-0">Here is an overview of your skincare planning.</p>
+            </div>
+            <a href="#routine" class="btn btn-primary-skin rounded-pill px-4">View my routine →</a>
+        </div>
+
+        <div class="row g-3 mb-5">
+            <div class="col-md-4">
+                <div class="stat-card stat-yellow">
+                    <span>Monthly skincare budget</span>
+                    <strong>₨ 5,000</strong>
+                    <small>Your selected budget</small>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="stat-card stat-blue">
+                    <span>Estimated routine cost</span>
+                    <strong>₨ 3,450</strong>
+                    <small>Illustrative sample total</small>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="stat-card stat-pink">
+                    <span>Saved products</span>
+                    <strong>04</strong>
+                    <small>Products in your collection</small>
+                </div>
+            </div>
+        </div>
+
+        <section class="panel-card mb-4">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                <div>
+                    <span class="eyebrow">YOUR INFORMATION</span>
+                    <h2 class="h4 fw-bold mt-2 mb-0">My skin profile</h2>
+                </div>
+                <a href="#" class="text-link small fw-semibold">Edit profile</a>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <span class="small text-secondary d-block">Skin type</span>
+                    <span class="soft-tag tag-blue d-inline-block mt-2">Oily</span>
+                </div>
+                <div class="col-md-4">
+                    <span class="small text-secondary d-block">Skin concerns</span>
+                    <span class="soft-tag tag-yellow d-inline-block mt-2">Acne</span>
+                    <span class="soft-tag tag-pink d-inline-block mt-2">Oiliness</span>
+                </div>
+                <div class="col-md-4">
+                    <span class="small text-secondary d-block">Ingredient preferences</span>
+                    <span class="soft-tag tag-blue d-inline-block mt-2">Fragrance-free preference</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <span class="eyebrow">DISCOVER</span>
+                    <h2 class="h4 fw-bold mt-2">Explore skincare products</h2>
+                </div>
+                <a href="#" class="text-link small fw-semibold">View all products →</a>
+            </div>
+
+            <div class="row g-3">
+
+                <div class="col-6 col-lg-3">
+                    <div class="product-card">
+                        <div class="product-art art-cleanser">🧴</div>
+                        <span class="product-category">CLEANSER</span>
+                        <h3 class="h6 fw-bold">Gentle Face Wash</h3>
+                        <p class="small text-secondary mb-2">Sample product</p>
+                        <strong>₨ 850</strong>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <div class="product-card">
+                        <div class="product-art art-moisturizer">🫙</div>
+                        <span class="product-category">MOISTURIZER</span>
+                        <h3 class="h6 fw-bold">Daily Moisturizer</h3>
+                        <p class="small text-secondary mb-2">Sample product</p>
+                        <strong>₨ 950</strong>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <div class="product-card">
+                        <div class="product-art art-sunscreen">☀️</div>
+                        <span class="product-category">SUNSCREEN</span>
+                        <h3 class="h6 fw-bold">Daily Sun Protection</h3>
+                        <p class="small text-secondary mb-2">Sample product</p>
+                        <strong>₨ 1,000</strong>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-3">
+                    <div class="product-card">
+                        <div class="product-art art-serum">💧</div>
+                        <span class="product-category">SERUM</span>
+                        <h3 class="h6 fw-bold">Hydrating Serum</h3>
+                        <p class="small text-secondary mb-2">Sample product</p>
+                        <strong>₨ 650</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="small text-secondary mt-3">Note: Product names and prices above are illustrative placeholders for the frontend prototype, not verified market listings.</p>
+        </section>
+
+        <section id="routine" class="mb-4">
+            <div class="mb-3">
+                <span class="eyebrow">YOUR DAILY PLAN</span>
+                <h2 class="h4 fw-bold mt-2">My skincare routine</h2>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="routine-card h-100">
+                        <span class="routine-icon">☼</span>
+                        <h3 class="h5 fw-bold mt-2">Morning routine</h3>
+                        <ol class="routine-list">
+                            <li>Gentle face wash <span>Step 01</span></li>
+                            <li>Moisturizer <span>Step 02</span></li>
+                            <li>Sunscreen <span>Step 03</span></li>
+                        </ol>
+                        <span class="soft-tag tag-yellow">AM routine</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="routine-card evening h-100">
+                        <span class="routine-icon">☾</span>
+                        <h3 class="h5 fw-bold mt-2">Evening routine</h3>
+                        <ol class="routine-list">
+                            <li>Gentle face wash <span>Step 01</span></li>
+                            <li>Hydrating serum <span>Step 02</span></li>
+                            <li>Moisturizer <span>Step 03</span></li>
+                        </ol>
+                        <span class="soft-tag tag-blue">PM routine</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer-skinwise">
+        <div class="container d-flex justify-content-between flex-wrap gap-2">
+            <a class="brand-mark text-decoration-none" href="index.html"><span class="brand-icon">✿</span> skinwise</a>
+            <span class="small text-secondary">User Dashboard · Static Prototype</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+﻿
+<main class="container py-5">
+
+    <div class="dashboard-welcome mb-4">
+        <div>
+            <span class="eyebrow">ADMINISTRATION</span>
+            <h1 class="fw-bold mt-2">Admin dashboard</h1>
+            <p class="text-secondary mb-0">Manage SkinWise platform information and content.</p>
+        </div>
+        <span class="soft-tag tag-pink">Administrator view</span>
+    </div>
+
+    <div class="row g-3 mb-5">
+
+        <div class="col-6 col-lg-3">
+            <div class="admin-stat">
+                <span>Total users</span>
+                <strong>@ViewBag.TotalUsers</strong>
+                <small>Registered accounts</small>
+            </div>
+        </div>
+
+        <div class="col-6 col-lg-3">
+            <div class="admin-stat">
+                <span>Brands</span>
+                <strong>@ViewBag.TotalBrands</strong>
+                <small>Listed skincare brands</small>
+            </div>
+        </div>
+
+        <div class="col-6 col-lg-3">
+            <div class="admin-stat">
+                <span>Products</span>
+                <strong>@ViewBag.TotalProducts</strong>
+                <small>Product listings</small>
+            </div>
+        </div>
+
+        <div class="col-6 col-lg-3">
+            <div class="admin-stat">
+                <span>Categories</span>
+                <strong>@ViewBag.TotalCategories</strong>
+                <small>Product categories</small>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-lg-8">
+            <section class="panel-card h-100">
+
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                    <div>
+                        <span class="eyebrow">CATALOGUE MANAGEMENT</span>
+                        <h2 class="h4 fw-bold mt-2 mb-0">Recent products</h2>
+                    </div>
+
+                    <a href="#" class="btn btn-primary-skin btn-sm rounded-pill px-3">
+                        + Add product
+                    </a>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table align-middle">
+
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Gentle Face Wash</strong><br />
+                                    <small class="text-secondary">Sample Brand A</small>
+                                </td>
+                                <td>Cleanser</td>
+                                <td>₨ 850</td>
+                                <td><span class="status-active">Active</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <strong>Daily Moisturizer</strong><br />
+                                    <small class="text-secondary">Sample Brand B</small>
+                                </td>
+                                <td>Moisturizer</td>
+                                <td>₨ 950</td>
+                                <td><span class="status-active">Active</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <strong>Hydrating Serum</strong><br />
+                                    <small class="text-secondary">Sample Brand C</small>
+                                </td>
+                                <td>Serum</td>
+                                <td>₨ 650</td>
+                                <td><span class="status-review">Review</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <strong>Daily Sunscreen</strong><br />
+                                    <small class="text-secondary">Sample Brand A</small>
+                                </td>
+                                <td>Sunscreen</td>
+                                <td>₨ 1,000</td>
+                                <td><span class="status-active">Active</span></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+                <p class="small text-secondary mb-0">
+                    Sample entries for the frontend prototype. Replace with verified product information later.
+                </p>
+
+            </section>
+        </div>
+
+        <div class="col-lg-4">
+            <section class="panel-card h-100">
+
+                <span class="eyebrow">QUICK ACCESS</span>
+                <h2 class="h4 fw-bold mt-2">Manage platform</h2>
+
+                <div class="admin-action-list">
+                    <a href="#"><span>♙</span> Manage users <b>→</b></a>
+                    <a href="#"><span>✿</span> Manage brands <b>→</b></a>
+                    <a href="#"><span>▣</span> Manage products <b>→</b></a>
+                    <a href="#"><span>☷</span> Manage categories <b>→</b></a>
+                    <a href="#"><span>◉</span> Ingredient information <b>→</b></a>
+                </div>
+
+            </section>
+        </div>
+
+    </div>
+
+</main>

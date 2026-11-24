@@ -1,0 +1,176 @@
+﻿@model IEnumerable<SkinwiseProj.Models.Product>
+
+@{
+    ViewData["Title"] = "Explore Products";
+}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+        <span class="eyebrow">SKINWISE CATALOGUE</span>
+        <h1 class="fw-bold mt-2">Explore Skincare Products</h1>
+        <p class="text-secondary">
+            Discover products, brands and their prices.
+        </p>
+    </div>
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-7">
+            <input type="text"
+                   id="searchBox"
+                   class="form-control form-control-lg"
+                   placeholder="Search products, categories or brands..." />
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <h5 class="fw-bold">Available Brands</h5>
+
+        @foreach (var brand in ViewBag.Brands)
+        {
+            <span class="badge rounded-pill text-bg-info me-2 mb-2">
+                @brand.Name
+            </span>
+        }
+    </div>
+
+    <div class="mb-4">
+        <h5 class="fw-bold">Ingredients Library</h5>
+
+        <div class="d-flex flex-wrap gap-2">
+            @foreach (var ingredient in ViewBag.Ingredients)
+            {
+                <span class="badge rounded-pill text-bg-light border">
+                    @ingredient.Name
+                </span>
+            }
+        </div>
+    </div>
+
+    <hr />
+
+    <h4 class="fw-bold mb-4">Products</h4>
+
+    <div class="row g-4" id="productResults">
+
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4 col-lg-3">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <span class="badge text-bg-info mb-3">
+                            @product.Category
+                        </span>
+
+                        <h5 class="card-title fw-bold">
+                            @product.Name
+                        </h5>
+
+                        <p class="text-secondary small">
+                            @product.BrandName
+                        </p>
+
+                        <h5 class="fw-bold">
+                            ₨ @product.Price.ToString("N2")
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <p id="noResults" class="text-center text-secondary mt-4"
+       style="display:none;">
+        No products found.
+    </p>
+
+</div>
+
+@section Scripts {
+
+    <script>
+        const searchBox = document.getElementById("searchBox");
+        const results = document.getElementById("productResults");
+        const noResults = document.getElementById("noResults");
+
+        const searchUrl = '@Url.Action("SearchProducts", "Home")';
+
+        let searchTimeout;
+
+        searchBox.addEventListener("input", function () {
+
+            clearTimeout(searchTimeout);
+
+            searchTimeout = setTimeout(async function () {
+
+                const term = searchBox.value;
+
+                try {
+
+                    const response = await fetch(
+                        searchUrl + "?term=" + encodeURIComponent(term)
+                    );
+
+                    if (!response.ok) {
+                        throw new Error("Could not retrieve products.");
+                    }
+
+                    const products = await response.json();
+
+                    results.replaceChildren();
+
+                    noResults.style.display =
+                        products.length === 0 ? "block" : "none";
+
+                    products.forEach(function (product) {
+
+                        const column = document.createElement("div");
+                        column.className = "col-md-4 col-lg-3";
+
+                        const card = document.createElement("div");
+                        card.className = "card h-100 shadow-sm border-0";
+
+                        const body = document.createElement("div");
+                        body.className = "card-body";
+
+                        const category = document.createElement("span");
+                        category.className = "badge text-bg-info mb-3";
+                        category.textContent = product.category;
+
+                        const name = document.createElement("h5");
+                        name.className = "card-title fw-bold";
+                        name.textContent = product.name;
+
+                        const brand = document.createElement("p");
+                        brand.className = "text-secondary small";
+                        brand.textContent = product.brandName;
+
+                        const price = document.createElement("h5");
+                        price.className = "fw-bold";
+                        price.textContent =
+                            "₨ " + Number(product.price).toFixed(2);
+
+                        body.append(category, name, brand, price);
+                        card.appendChild(body);
+                        column.appendChild(card);
+                        results.appendChild(column);
+
+                    });
+
+                }
+                catch (error) {
+
+                    console.error(error);
+                    noResults.textContent =
+                        "Unable to load products. Please try again.";
+                    noResults.style.display = "block";
+
+                }
+
+            }, 300);
+
+        });
+    </script>
+
+}

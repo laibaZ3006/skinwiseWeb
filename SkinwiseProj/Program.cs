@@ -22,6 +22,20 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+// Deliverable 3: Repository Dependency Injection
+
+builder.Services.AddScoped<
+    SkinwiseProj.Repositories.Interfaces.IProductRepository,
+    SkinwiseProj.Repositories.ProductRepository>();
+
+builder.Services.AddScoped<
+    SkinwiseProj.Repositories.Interfaces.IBrandRepository,
+    SkinwiseProj.Repositories.BrandRepository>();
+
+builder.Services.AddScoped<
+    SkinwiseProj.Repositories.Interfaces.IIngredientRepository,
+    SkinwiseProj.Repositories.IngredientRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

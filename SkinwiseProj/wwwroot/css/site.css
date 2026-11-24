@@ -886,3 +886,50 @@ h1, h2, h3, h4, h5, .brand-mark {
         padding: 19px;
     }
 }
+
+/* SKINWISE IDENTITY CUSTOMIZATION */
+
+.identity-page {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 15px;
+    background: linear-gradient( 135deg, #fffdf4, #eaf4fa );
+}
+
+.identity-card {
+    width: 100%;
+    max-width: 480px;
+    background: white;
+    padding: 35px;
+    border-radius: 22px;
+    border: 1px solid #ece9df;
+    box-shadow: 0 15px 45px #52616b15;
+}
+
+    .identity-card h1 {
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .identity-card .form-control {
+        border-radius: 12px;
+        padding: 12px;
+    }
+
+    .identity-card .btn-primary {
+        background: #26323a;
+        border-color: #26323a;
+        border-radius: 30px;
+        padding: 12px;
+    }
+
+        .identity-card .btn-primary:hover {
+            background: #526c7a;
+            border-color: #526c7a;
+        }
+
+    .identity-card a {
+        color: #557f98;
+    }

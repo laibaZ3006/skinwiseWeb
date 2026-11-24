@@ -1,77 +1,78 @@
-
 using Microsoft.AspNetCore.Mvc;
+using SkinwiseProj.Repositories.Interfaces;
 
 namespace SkinwiseProj.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IProductRepository _productRepository;
+        private readonly IBrandRepository _brandRepository;
+        private readonly IIngredientRepository _ingredientRepository;
+
+        public HomeController(
+            IProductRepository productRepository,
+            IBrandRepository brandRepository,
+            IIngredientRepository ingredientRepository)
+        {
+            _productRepository = productRepository;
+            _brandRepository = brandRepository;
+            _ingredientRepository = ingredientRepository;
+        }
+
         public IActionResult Index()
         {
-            ViewData["Title"] = "Home";
             return View();
         }
 
-        public IActionResult UserHome()
+        public async Task<IActionResult> UserHome()
         {
-            ViewData["Title"] = "User Dashboard";
+            var products = await _productRepository.GetAllAsync();
 
-            ViewBag.UserName = "SkinWise User";
+            // Prevent null results from breaking the Razor view.
+            ViewBag.Products = (object?)products ?? Array.Empty<object>();
 
-            // Sample skincare products
-            ViewBag.Products = new[]
-            {
-                new
-                {
-                    ArtClass = "product-yellow",
-                    Icon = "☼",
-                    Category = "Cleanser",
-                    Name = "Gentle Face Wash",
-                    Description = "A gentle daily cleanser.",
-                    Price = "₨ 850"
-                },
-                new
-                {
-                    ArtClass = "product-blue",
-                    Icon = "✿",
-                    Category = "Moisturizer",
-                    Name = "Daily Moisturizer",
-                    Description = "Lightweight daily hydration.",
-                    Price = "₨ 950"
-                },
-                new
-                {
-                    ArtClass = "product-pink",
-                    Icon = "☁",
-                    Category = "Serum",
-                    Name = "Hydrating Serum",
-                    Description = "A sample hydrating serum.",
-                    Price = "₨ 650"
-                },
-                new
-                {
-                    ArtClass = "product-yellow",
-                    Icon = "☀",
-                    Category = "Sunscreen",
-                    Name = "Daily Sunscreen",
-                    Description = "Daily sun protection.",
-                    Price = "₨ 1,000"
-                }
-            };
+            ViewBag.UserName = "User";
 
             return View();
         }
 
-        public IActionResult AdminHome()
+        public async Task<IActionResult> AdminHome()
         {
-            ViewData["Title"] = "Admin Dashboard";
+            var products = await _productRepository.GetAllAsync();
+            var brands = await _brandRepository.GetAllAsync();
+            var ingredients = await _ingredientRepository.GetAllAsync();
 
-            // Sample dashboard statistics
-            ViewBag.TotalUsers = 25;
-            ViewBag.TotalBrands = 6;
-            ViewBag.TotalProducts = 12;
-            ViewBag.TotalCategories = 4;
+            ViewBag.Products = (object?)products ?? Array.Empty<object>();
+
+            ViewBag.TotalProducts = products?.Count() ?? 0;
+            ViewBag.TotalBrands = brands?.Count() ?? 0;
+            ViewBag.TotalCategories = 0;
+
+            // Replace with the actual registered-user count when
+            // your Identity user repository is connected.
+            ViewBag.TotalUsers = 0;
 
             return View();
+        }
+
+        // Display products from SQL Server.
+        public async Task<IActionResult> Products()
+        {
+            var products = await _productRepository.GetAllAsync();
+
+            ViewBag.Brands = await _brandRepository.GetAllAsync();
+            ViewBag.Ingredients = await _ingredientRepository.GetAllAsync();
+
+            return View(products);
+        }
+
+        // AJAX product search.
+        [HttpGet]
+        public async Task<IActionResult> SearchProducts(string? term)
+        {
+            var products = await _productRepository.SearchAsync(term);
+
+            return Json(products ?? Enumerable.Empty<object>());
         }
     }
 }

@@ -1,16 +1,27 @@
-﻿
+﻿@{
+    ViewData["Title"] = "User Dashboard";
+}
+
 <main class="container py-5">
 
     <div class="dashboard-welcome mb-4">
         <div>
             <span class="eyebrow">YOUR PERSONAL SPACE</span>
-            <h1 class="fw-bold mt-2">Hello, @ViewBag.UserName <span class="wave">✿</span></h1>
-            <p class="text-secondary mb-0">Here is an overview of your skincare planning.</p>
+            <h1 class="fw-bold mt-2">
+                Hello, @ViewBag.UserName <span class="wave">✿</span>
+            </h1>
+            <p class="text-secondary mb-0">
+                Here is an overview of your skincare planning.
+            </p>
         </div>
-        <a href="#routine" class="btn btn-primary-skin rounded-pill px-4">View my routine →</a>
+
+        <a href="#routine" class="btn btn-primary-skin rounded-pill px-4">
+            View my routine →
+        </a>
     </div>
 
     <div class="row g-3 mb-5">
+
         <div class="col-md-4">
             <div class="stat-card stat-yellow">
                 <span>Monthly skincare budget</span>
@@ -34,18 +45,22 @@
                 <small>Products in your collection</small>
             </div>
         </div>
+
     </div>
 
     <section class="panel-card mb-4">
+
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
             <div>
                 <span class="eyebrow">YOUR INFORMATION</span>
                 <h2 class="h4 fw-bold mt-2 mb-0">My skin profile</h2>
             </div>
+
             <a href="#" class="text-link small fw-semibold">Edit profile</a>
         </div>
 
         <div class="row g-3">
+
             <div class="col-md-4">
                 <span class="small text-secondary d-block">Skin type</span>
                 <span class="soft-tag tag-blue d-inline-block mt-2">Oily</span>
@@ -59,51 +74,89 @@
 
             <div class="col-md-4">
                 <span class="small text-secondary d-block">Ingredient preferences</span>
-                <span class="soft-tag tag-blue d-inline-block mt-2">Fragrance-free preference</span>
+                <span class="soft-tag tag-blue d-inline-block mt-2">
+                    Fragrance-free preference
+                </span>
             </div>
+
         </div>
+
     </section>
 
     <section class="mb-5">
+
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div>
                 <span class="eyebrow">DISCOVER</span>
                 <h2 class="h4 fw-bold mt-2">Explore skincare products</h2>
             </div>
-            <a href="#" class="text-link small fw-semibold">View all products →</a>
+
+            <a asp-controller="Home"
+               asp-action="Products"
+               class="text-link small fw-semibold">
+                View all products →
+            </a>
         </div>
 
         <div class="row g-3">
 
-            @foreach (var product in ViewBag.Products)
+            @if (ViewBag.Products != null &&
+                        ViewBag.HasProducts == true)
             {
-                <div class="col-6 col-lg-3">
-                    <div class="product-card">
-                        <div class="product-art @product.ArtClass">@product.Icon</div>
-                        <span class="product-category">@product.Category</span>
-                        <h3 class="h6 fw-bold">@product.Name</h3>
-                        <p class="small text-secondary mb-2">@product.Description</p>
-                        <strong>@product.Price</strong>
+                foreach (var product in ViewBag.Products)
+                {
+                    <div class="col-6 col-lg-3">
+                        <div class="product-card h-100 p-3">
+
+                            <span class="product-category">
+                                @product.Category
+                            </span>
+
+                            <h3 class="h6 fw-bold mt-2">
+                                @product.Name
+                            </h3>
+
+                            <p class="small text-secondary mb-2">
+                                @product.Description
+                            </p>
+
+                            <strong>₨ @product.Price</strong>
+
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <div class="panel-card text-center p-4">
+                        <p class="mb-2">No products available yet.</p>
+
+                        <a asp-controller="Home"
+                           asp-action="Products"
+                           class="btn btn-primary-skin rounded-pill px-4">
+                            Explore products →
+                        </a>
                     </div>
                 </div>
             }
 
         </div>
 
-        <p class="small text-secondary mt-3">
-            Note: Product names and prices above are illustrative placeholders for the frontend prototype, not verified market listings.
-        </p>
     </section>
 
     <section id="routine" class="mb-4">
+
         <div class="mb-3">
             <span class="eyebrow">YOUR DAILY PLAN</span>
             <h2 class="h4 fw-bold mt-2">My skincare routine</h2>
         </div>
 
         <div class="row g-3">
+
             <div class="col-md-6">
                 <div class="routine-card h-100">
+
                     <span class="routine-icon">☼</span>
                     <h3 class="h5 fw-bold mt-2">Morning routine</h3>
 
@@ -114,11 +167,13 @@
                     </ol>
 
                     <span class="soft-tag tag-yellow">AM routine</span>
+
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="routine-card evening h-100">
+
                     <span class="routine-icon">☾</span>
                     <h3 class="h5 fw-bold mt-2">Evening routine</h3>
 
@@ -129,9 +184,12 @@
                     </ol>
 
                     <span class="soft-tag tag-blue">PM routine</span>
+
                 </div>
             </div>
+
         </div>
+
     </section>
 
 </main>
